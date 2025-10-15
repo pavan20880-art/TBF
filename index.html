@@ -1,0 +1,92 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TBF — Traders Battle Field</title>
+  <!-- Tailwind removed -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- background image fallback removed to fix blur/overlay issue -->
+  <canvas id="starfield" class="starfield"></canvas>
+
+  <main id="console" class="console">
+  <div id="hub" class="hub">
+      <!-- Top panel (social) -->
+  <div class="panel panel-top glass" id="panel-social">
+        <div class="panel-title">SOCIAL</div>
+  <div class="panel-buttons">
+          <button class="tool-btn pink" data-url="https://youtube.com">YouTube</button>
+          <button class="tool-btn pink" data-url="https://gmail.com">Gmail</button>
+          <button class="tool-btn pink" data-url="https://twitter.com">Twitter</button>
+          <button class="tool-btn pink" data-url="https://facebook.com">Facebook</button>
+          <button class="tool-btn pink" data-url="https://telegram.org">Telegram</button>
+          <button class="tool-btn pink" data-url="https://whatsapp.com">WhatsApp</button>
+          <button class="tool-btn pink" data-url="https://reddit.com">Reddit</button>
+        </div>
+      </div>
+
+      <!-- Left panel (AI) -->
+  <div class="panel panel-left glass" id="panel-ai">
+        <div class="panel-title">AI TOOLS</div>
+  <div class="panel-buttons">
+          <button class="tool-btn cyan" data-url="https://chat.openai.com">ChatGPT</button>
+          <button class="tool-btn cyan" data-url="https://claude.ai">Claude</button>
+          <button class="tool-btn cyan" data-url="https://www.blackbox.ai">Blackbox</button>
+          <button class="tool-btn cyan" data-url="https://www.perplexity.ai">Perplexity</button>
+          <button class="tool-btn cyan" data-url="https://copilot.microsoft.com">Copilot</button>
+          <button class="tool-btn cyan" data-url="https://gemini.google.com">Gemini</button>
+        </div>
+      </div>
+
+      <!-- Right panel (Google Workspace) -->
+  <div class="panel panel-right glass" id="panel-google-workspace">
+        <div class="panel-title">Google Workspace</div>
+  <div class="panel-buttons">
+          <button class="tool-btn purple" data-url="https://docs.google.com/document">Google Docs</button>
+          <button class="tool-btn purple" data-url="https://docs.google.com/spreadsheets/u/0/">Google Sheets</button>
+          <button class="tool-btn purple" data-url="https://docs.google.com/presentation/u/0/">Google Slides</button>
+          <button class="tool-btn purple" data-url="https://drive.google.com/drive/">Google Drive</button>
+          <button class="tool-btn purple" data-url="https://keep.google.com/u/0/">Google Keep</button>
+          <button class="tool-btn purple" data-url="https://www.google.com/finance/">Google Finance</button>
+          <button class="tool-btn purple" data-url="https://finance.yahoo.com/">Yahoo Finance</button>
+          <button class="tool-btn purple" data-url="https://scholar.google.com/">Google Scholar</button>
+        </div>
+      </div>
+
+      <!-- Bottom panel (Trading) -->
+  <div class="panel panel-bottom glass" id="panel-trading">
+        <div class="panel-title">TRADING</div>
+  <div class="panel-buttons">
+          <button class="tool-btn orange" data-url="https://in.tradingview.com/chart/">TradingView</button>
+          <button class="tool-btn orange" data-url="https://coinmarketcap.com">CoinMarketCap</button>
+          <button class="tool-btn orange" data-url="https://secure.vantagemarkets.com/login">vantagemarkets</button>
+          <button class="tool-btn orange" data-url="https://www.exness.com/accounts/sign-in">Exness</button>
+          <button class="tool-btn orange" data-url="https://www.binance.us/login">Binance</button>
+          <button class="tool-btn orange" data-url="https://www.forexfactory.com">ForexFactory</button>
+          <button class="tool-btn orange" data-url="https://zapper.xyz">Zapper</button>
+          <button class="tool-btn orange" data-url="https://opensea.io">OpenSea</button>
+        </div>
+      </div>
+
+      <!-- Center HUD -->
+  <div class="center-hud" id="center-hud">
+  <div class="rings">
+          <div class="ring ring-outer"></div>
+          <div class="ring ring-mid"></div>
+        </div>
+  <div id="clock" class="clock glass center-glow">
+          <div id="time" class="time">00:00:00</div>
+          <div id="date" class="date">MON, 1 JAN</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Three.js removed -->
+  <script src="script.js"></script>
+</body>
+</html>

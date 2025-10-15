@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "TBF \u2014 Traders Battle Field",
+  "version": "1.0",
+  "description": "Cyberfunk holographic dashboard (new tab) with AI, Browsers, Trading, and Social panels.",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "icons": {
+    "16": "assets/icons16.png",
+    "128": "assets/icons128.png"
+  },
+  "permissions": [
+    "tabs"
+  ]
+}

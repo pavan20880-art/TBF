@@ -1,0 +1,307 @@
+:root{
+  --bg-deep:#0a0e16;
+  --bg-mid:#1e1e3c;
+  --bg-light:#2a2a4a;
+  --cyan:#06b6d4;
+  --purple:#8b5cf6;
+  --orange:#fb923c;
+  --pink:#ec4899;
+  --glass: rgba(10,14,22,0.45);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap');
+html,body{
+  margin:0;
+  height:100%;
+  font-family:Inter,system-ui,Arial;
+  background:var(--bg-deep);
+  overflow:hidden;
+}
+
+#starfield{position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:0}
+
+/* --- Layout Fixes & Responsive Improvements --- */
+#hub {
+  width: 86vw;
+  max-width: 1200px;
+  height: 78vh;
+  max-height: 900px;
+  margin: 0 auto;
+  position: relative;
+  display: block;
+}
+.panel-title {
+  font-weight: 700;
+  font-size: 1.2em;
+  color: #eaf6ffcc;
+  margin-bottom: 6px;
+}
+.panel {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 16px;
+  border-radius: 18px;
+  backdrop-filter: blur(2px) saturate(120%);
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: transform 220ms ease, box-shadow 220ms ease, opacity 220ms ease;
+  z-index: 2;
+}
+.panel-top {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 2%;
+  width: 90%;
+  max-width: 920px;
+  height: auto;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.panel-bottom {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 2%;
+  width: 90%;
+  max-width: 920px;
+  height: auto;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.panel-left {
+  left: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22%;
+  max-width: 260px;
+  padding: 14px;
+}
+.panel-right {
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22%;
+  max-width: 300px;
+  padding: 14px;
+}
+.panel-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Advanced Pill Button Animation & Effects for .tool-btn */
+.tool-btn {
+  appearance: none;
+  border: none;
+  outline: none;
+  border-radius: 9999px;
+  padding: 10px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.16), 0 2px 4px rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+  transition: transform 140ms cubic-bezier(.2,.7,.3,1), box-shadow 140ms ease;
+  cursor: pointer;
+  user-select: none;
+  background: var(--btn-bg, #fff);
+  color: var(--btn-fg, #111);
+  border: 1px solid var(--btn-border, rgba(0,0,0,0.06));
+}
+.tool-btn::before {
+  content: "";
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 46%;
+  border-radius: inherit;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0));
+  transform: translateY(0%);
+  pointer-events: none;
+}
+.tool-btn:hover::before { animation: sheen 900ms ease-out; }
+@keyframes sheen {
+  0% { transform: translateY(-40%); opacity: .9; }
+  100% { transform: translateY(60%); opacity: 0; }
+}
+.tool-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+  transform: skewX(-25deg);
+}
+.tool-btn:hover::after { animation: shine 1s forwards; }
+@keyframes shine {
+  0% { left: -75%; }
+  100% { left: 125%; }
+}
+.tool-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.20), 0 4px 8px rgba(0,0,0,0.08);
+}
+.tool-btn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.16), 0 1px 2px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.6);
+  animation: press-bounce 160ms ease-out;
+}
+@keyframes press-bounce {
+  0% { transform: translateY(-1px) scale(1); }
+  50% { transform: translateY(0) scale(0.97); }
+  100% { transform: translateY(0) scale(0.98); }
+}
+.tool-btn:focus-visible {
+  box-shadow: 0 14px 30px rgba(0,0,0,0.20), 0 4px 8px rgba(0,0,0,0.08), 0 0 0 4px rgba(0,0,0,0.08);
+}
+/* Ripple effect for pill buttons */
+.tool-btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 520ms ease-out;
+  background: rgba(0,0,0,0.15);
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+@keyframes ripple {
+  to { transform: scale(6); opacity: 0; }
+}
+/* Color variants for pill buttons */
+.tool-btn.pink {
+  --btn-bg: #ff69b4;
+  --btn-fg: #fff;
+  --btn-border: rgba(255,105,180,0.18);
+}
+.tool-btn.cyan {
+  --btn-bg: #06b6d4;
+  --btn-fg: #fff;
+  --btn-border: rgba(6,182,212,0.18);
+}
+.tool-btn.purple {
+  --btn-bg: #8e44ad;
+  --btn-fg: #fff;
+  --btn-border: rgba(142,68,173,0.18);
+}
+.tool-btn.orange {
+  --btn-bg: #ff9800;
+  --btn-fg: #fff;
+  --btn-border: rgba(255,152,0,0.18);
+}
+@media (prefers-color-scheme: dark) {
+  .tool-btn {
+    --btn-bg: #141414;
+    --btn-fg: #f2f2f2;
+    --btn-border: rgba(255,255,255,0.08);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.4);
+  }
+}
+.center-hud {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 5;
+}
+.clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--glass);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  box-shadow: 0 8px 32px rgba(6,182,210,0.12);    
+}
+.center-glow {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  position: absolute;
+}
+.time {
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  color: #eaf6ff;
+  text-shadow: 0 6px 32px rgba(6,182,210,0.08);
+}
+.date {
+  color: #eaf6ffcc;
+  margin-top: 6px;
+}
+.rings {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 24px auto;
+}
+.ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid #eaf6ff44;
+}
+.ring-outer { width: 220px; height: 220px; border-width: 4px; }
+.ring-mid { width: 160px; height: 160px; border-width: 3px; }
+.ring-inner { width: 100px; height: 100px; border-width: 2px; }
+
+@keyframes spinCW{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes spinCCW{from{transform:translate(-50%,-50%) rotate(360deg)}to{transform:translate(-50%,-50%) rotate(0deg)}}
+
+/* small screens */
+@media (max-width:900px) {
+  #hub {
+    width: 98vw;
+    height: 98vh;
+    max-width: none;
+    max-height: none;
+  }
+  .panel-left, .panel-right {
+    position: static;
+    width: 100%;
+    max-width: none;
+    left: 0;
+    right: 0;
+    top: auto;
+    transform: none;
+    padding: 10px;
+    margin-bottom: 12px;
+  }
+  .panel-top, .panel-bottom {
+    width: 98vw;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: none;
+  }
+  .center-hud {
+    width: 72vw;
+    height: 72vw;
+    min-width: 220px;
+    min-height: 220px;
+  }
+  .tool-btn {
+    min-width: 86px;
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}
